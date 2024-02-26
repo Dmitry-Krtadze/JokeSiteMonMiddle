@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/Dmitry-Krtadze/JokeSiteMonMiddle/issues"
   },
-  "homepage": "https://github.com/Dmitry-Krtadze/JokeSiteMonMiddle#readme"
+  "homepage": "https://github.com/Dmitry-Krtadze/JokeSiteMonMiddle#readme",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "nodemon": "^3.1.0",
+    "one-liner-joke": "^1.2.2",
+    "path": "^0.12.7",
+    "url": "^0.11.3"
+  }
 }
