@@ -17,10 +17,34 @@ const server = http.createServer((req, res) =>{
         addJoke(req, res);
     }
 
+    if(req.url.startsWith('/like')){
+        like(req,res);
+    }
+
 
 
 });
 server.listen(3000);
+
+function like(req, res){
+    const url = require('url');
+    const params = url.parse(req.url, true).query;
+    let id = params.id;
+    let dir = fs.readdirSync(dataPath);
+    if(id){
+        if(id > dir.length){
+            res.end("Шутки с таким id нет(")
+        }else{
+            let filePath = path.join(dataPath, id+'.json')
+            let file = fs.readFileSync(filePath);
+            let jokeJson = Buffer.from(file).toString();
+            let joke = JSON.parse(jokeJson);
+            joke.likes++;
+            fs.writeFileSync(filePath, JSON.stringify(joke));
+            res.end(`Ви лайкнули шутку ${id}`)
+        }
+    }
+}
 
 function addJoke(req,res){
     let data ='';
